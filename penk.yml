@@ -1,0 +1,1342 @@
+basePath: /
+definitions:
+  models.RoleModule:
+    enum:
+    - PATIENT
+    - CARE_PLAN
+    - DASHBOARD
+    - MEDIA
+    - NOTIFICATION
+    type: string
+    x-enum-varnames:
+    - Patient
+    - CarePlan
+    - Dashboard
+    - Media
+    - Notification
+  request.CarePlanReqDTO:
+    properties:
+      care_plan_template_id:
+        type: string
+      condition:
+        type: string
+      end_date:
+        type: string
+      gender:
+        type: string
+      name:
+        type: string
+      patient_group:
+        type: string
+      start_date:
+        type: string
+      status:
+        type: string
+      user_tags:
+        type: string
+      version:
+        type: string
+    required:
+    - care_plan_template_id
+    - condition
+    - end_date
+    - gender
+    - name
+    - patient_group
+    - start_date
+    - status
+    - user_tags
+    - version
+    type: object
+  request.CarePlanTemplateReqDTO:
+    properties:
+      condition:
+        type: string
+      group:
+        type: string
+      name:
+        type: string
+      status:
+        type: string
+      version:
+        type: string
+    required:
+    - condition
+    - group
+    - name
+    - status
+    - version
+    type: object
+  request.LoginReqDTO:
+    properties:
+      token:
+        type: string
+    type: object
+  request.PatientReqDTO:
+    properties:
+      address:
+        type: string
+      date_of_birth:
+        type: string
+      emergency_relation:
+        $ref: '#/definitions/response.EmergencyRelation'
+      gender:
+        type: string
+      id:
+        type: string
+      patient_group:
+        $ref: '#/definitions/response.PatientGroup'
+      patient_name_en:
+        type: string
+      patient_name_th:
+        type: string
+      telephone_number:
+        type: string
+      user_tags:
+        items:
+          $ref: '#/definitions/response.Usertag'
+        type: array
+    required:
+    - id
+    type: object
+  request.RoleReqDTO:
+    properties:
+      module:
+        $ref: '#/definitions/models.RoleModule'
+      name:
+        type: string
+    required:
+    - module
+    - name
+    type: object
+  request.UserReqDTO:
+    properties:
+      email:
+        type: string
+      profile_name:
+        type: string
+    required:
+    - email
+    - profile_name
+    type: object
+  response.CarePlanResDTO:
+    properties:
+      care_plan_template_id:
+        type: string
+      condition:
+        type: string
+      created_at:
+        type: string
+      end_date:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      patient_group:
+        type: string
+      start_date:
+        type: string
+      status:
+        type: string
+      updated_at:
+        type: string
+      user_tags:
+        type: string
+      version:
+        type: string
+    type: object
+  response.CarePlanTemplateResDTO:
+    properties:
+      condition:
+        type: string
+      created_at:
+        type: string
+      group:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      status:
+        type: string
+      updated_at:
+        type: string
+      version:
+        type: string
+    type: object
+  response.DrugResDTO:
+    properties:
+      amount:
+        type: string
+      drug_clinic:
+        type: string
+      drug_instructions:
+        type: string
+      drug_name:
+        type: string
+      drug_timing:
+        type: string
+      id:
+        type: string
+    type: object
+  response.EmergencyRelation:
+    properties:
+      id:
+        type: string
+      relationName:
+        type: string
+      relationWithPatient:
+        type: string
+      telephoneNumber:
+        type: string
+    type: object
+  response.HealthRecordResDTO:
+    properties:
+      blood_pressure:
+        type: string
+      bmi:
+        type: integer
+      health_record_date:
+        type: string
+      height:
+        type: integer
+      problem_list:
+        items:
+          $ref: '#/definitions/response.ProblemDTO'
+        type: array
+      pulse:
+        type: integer
+      respiratory_rate:
+        type: integer
+      sp_o2:
+        type: integer
+      temperature:
+        type: integer
+      weight:
+        type: integer
+    type: object
+  response.LabDetailDTO:
+    properties:
+      lab_name:
+        type: string
+      lab_value:
+        type: integer
+      normal_range:
+        type: string
+    type: object
+  response.LabHistoryResDTO:
+    properties:
+      detail:
+        items:
+          $ref: '#/definitions/response.LabDetailDTO'
+        type: array
+      encounter_id:
+        type: string
+      lab_date:
+        type: string
+      physician_name:
+        type: string
+      previous_lab_result:
+        $ref: '#/definitions/response.PreviousLabResult'
+    type: object
+  response.PatientGroup:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  response.PatientResDTO:
+    properties:
+      address:
+        type: string
+      date_of_birth:
+        type: string
+      emergency_relation:
+        $ref: '#/definitions/response.EmergencyRelation'
+      gender:
+        type: string
+      id:
+        type: string
+      patient_group:
+        $ref: '#/definitions/response.PatientGroup'
+      patient_name_en:
+        description: PatientId       string    `json:"patient_id"`
+        type: string
+      patient_name_th:
+        type: string
+      telephone_number:
+        type: string
+      user_tags:
+        items:
+          $ref: '#/definitions/response.Usertag'
+        type: array
+    required:
+    - id
+    type: object
+  response.PreviousLabResult:
+    properties:
+      id:
+        type: string
+      lab_date:
+        type: string
+      lab_value:
+        type: integer
+    type: object
+  response.ProblemDTO:
+    properties:
+      problem_name:
+        type: string
+      problem_status:
+        type: string
+    type: object
+  response.RoleResDTO:
+    properties:
+      id:
+        type: string
+      module:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  response.UserResDTO:
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      profile_name:
+        type: string
+      role:
+        $ref: '#/definitions/response.RoleResDTO'
+      updated_at:
+        type: string
+    type: object
+  response.Usertag:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  utils.StandardResponseModel:
+    properties:
+      data: {}
+      error_code:
+        type: string
+      status_code:
+        type: integer
+      status_message:
+        type: string
+      timestamp:
+        type: string
+    type: object
+host: http://localhost:8080
+info:
+  contact: {}
+  description: Your API Description
+  title: Your API Title
+  version: "1.0"
+paths:
+  /v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: login
+      parameters:
+      - description: token object to be login
+        in: body
+        name: auth
+        required: true
+        schema:
+          $ref: '#/definitions/request.LoginReqDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Login Successfully
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      summary: login
+      tags:
+      - auth:auth
+  /v1/care-plan-templates:
+    get:
+      description: Get care-plan-templates ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: search by care plans id
+        in: query
+        name: care_plans_id
+        type: integer
+      - default: 10
+        description: Limit number of results returned
+        example: 20
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset for pagination
+        example: 10
+        in: query
+        name: offset
+        type: integer
+      - description: Start date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_from
+        type: string
+      - description: End date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Limit Example:
+              description: "10"
+              type: string
+            X-Total-Count Example:
+              description: "765"
+              type: string
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/response.CarePlanTemplateResDTO'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get care-plan-templates
+      tags:
+      - care-plans:care-plan-templates
+    post:
+      description: Create care-plan-templates ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: care-plan-templates object to be Create Care Plans
+        in: body
+        name: roles
+        required: true
+        schema:
+          $ref: '#/definitions/request.CarePlanTemplateReqDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Creat Care Plans Successfully
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Create care-plan-templates
+      tags:
+      - care-plans:care-plan-templates
+  /v1/care-plan-templates/:id:
+    get:
+      description: Get care-plan-templates by id ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: get care-plan-templates by id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  $ref: '#/definitions/response.CarePlanTemplateResDTO'
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get care-plan-templates by id
+      tags:
+      - care-plans:care-plan-templates
+    patch:
+      description: |-
+        Update care-plan-templates ...
+        Update care-plan-templates by id ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Update care-plan-templates by id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: care-plan-template object to be Create Care Plans
+        in: body
+        name: roles
+        required: true
+        schema:
+          $ref: '#/definitions/request.CarePlanReqDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  $ref: '#/definitions/response.CarePlanTemplateResDTO'
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Update care-plan-templates by id
+      tags:
+      - care-plans:care-plan-templates
+  /v1/care-plans:
+    get:
+      description: Get care-plans ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: search by care plans template id
+        in: query
+        name: care_plans_template_id
+        type: integer
+      - default: 10
+        description: Limit number of results returned
+        example: 20
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset for pagination
+        example: 10
+        in: query
+        name: offset
+        type: integer
+      - description: Start date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_from
+        type: string
+      - description: End date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Limit Example:
+              description: "10"
+              type: string
+            X-Total-Count Example:
+              description: "765"
+              type: string
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/response.CarePlanResDTO'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get care-plans
+      tags:
+      - care-plans:care-plans
+    post:
+      description: Create care-plans ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: care-plans object to be Create Care Plans
+        in: body
+        name: roles
+        required: true
+        schema:
+          $ref: '#/definitions/request.CarePlanReqDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Creat Care Plans Successfully
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Create care-plans
+      tags:
+      - care-plans:care-plans
+  /v1/care-plans/:id:
+    get:
+      description: Get care-plans by id ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: get care-plans by id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  $ref: '#/definitions/response.CarePlanResDTO'
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get care-plans by id
+      tags:
+      - care-plans:care-plans
+    patch:
+      description: |-
+        Update care-plans ...
+        Update care-plans by id ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Update care-plans by id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: care-plans object to be Create Care Plans
+        in: body
+        name: roles
+        required: true
+        schema:
+          $ref: '#/definitions/request.CarePlanReqDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  $ref: '#/definitions/response.CarePlanResDTO'
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Update care-plans by id
+      tags:
+      - care-plans:care-plans
+  /v1/patients:
+    get:
+      description: Get Patients ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - default: 10
+        description: Limit number of results returned
+        example: 20
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset for pagination
+        example: 10
+        in: query
+        name: offset
+        type: integer
+      - description: Start date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_from
+        type: string
+      - description: End date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Limit Example:
+              description: "10"
+              type: string
+            X-Total-Count Example:
+              description: "765"
+              type: string
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/response.PatientResDTO'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Patients
+      tags:
+      - patients:patients
+  /v1/patients/:id:
+    get:
+      description: Get Patient ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Limit Example:
+              description: "10"
+              type: string
+            X-Total-Count Example:
+              description: "765"
+              type: string
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/response.PatientResDTO'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Patient
+      tags:
+      - patients:patients
+    patch:
+      description: Update patient by id ...
+      parameters:
+      - description: update patient by id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Update patients
+        in: body
+        name: patients
+        required: true
+        schema:
+          $ref: '#/definitions/request.PatientReqDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Update patient by id
+      tags:
+      - patients:patients
+  /v1/patients/:id/drugs:
+    get:
+      description: Get Drugs ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - default: 10
+        description: Limit number of results returned
+        example: 20
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset for pagination
+        example: 10
+        in: query
+        name: offset
+        type: integer
+      - description: Start date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_from
+        type: string
+      - description: End date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Limit Example:
+              description: "10"
+              type: string
+            X-Total-Count Example:
+              description: "765"
+              type: string
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/response.DrugResDTO'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Drugs
+      tags:
+      - patients:patients
+  /v1/patients/:id/health_records:
+    get:
+      description: Get health histories ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - default: 10
+        description: Limit number of results returned
+        example: 20
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset for pagination
+        example: 10
+        in: query
+        name: offset
+        type: integer
+      - description: Start date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_from
+        type: string
+      - description: End date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Limit Example:
+              description: "10"
+              type: string
+            X-Total-Count Example:
+              description: "765"
+              type: string
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/response.HealthRecordResDTO'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get health histories
+      tags:
+      - patients:patients
+  /v1/patients/:id/lab_histories:
+    get:
+      description: Get lab histories ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - default: 10
+        description: Limit number of results returned
+        example: 20
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset for pagination
+        example: 10
+        in: query
+        name: offset
+        type: integer
+      - description: Start date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_from
+        type: string
+      - description: End date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Limit Example:
+              description: "10"
+              type: string
+            X-Total-Count Example:
+              description: "765"
+              type: string
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/response.LabHistoryResDTO'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get lab histories
+      tags:
+      - patients:patients
+  /v1/roles:
+    get:
+      description: Get Drugs ...
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - default: 10
+        description: Limit number of results returned
+        example: 20
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset for pagination
+        example: 10
+        in: query
+        name: offset
+        type: integer
+      - description: Start date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_from
+        type: string
+      - description: End date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Limit Example:
+              description: "10"
+              type: string
+            X-Total-Count Example:
+              description: "765"
+              type: string
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/response.DrugResDTO'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Drugs
+      tags:
+      - users:roles
+    post:
+      consumes:
+      - application/json
+      description: Create Role
+      parameters:
+      - description: Role object to be Create Role
+        in: body
+        name: roles
+        required: true
+        schema:
+          $ref: '#/definitions/request.RoleReqDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Create Role Successfully
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Create Role
+      tags:
+      - users:roles
+  /v1/users:
+    get:
+      description: Get users ...
+      parameters:
+      - default: 10
+        description: Limit number of results returned
+        example: 20
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset for pagination
+        example: 10
+        in: query
+        name: offset
+        type: integer
+      - description: Start date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_from
+        type: string
+      - description: End date for filtering
+        example: '"2024-01-01T00:00:00Z"'
+        in: query
+        name: date_to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Limit Example:
+              description: "10"
+              type: string
+            X-Total-Count Example:
+              description: "765"
+              type: string
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/response.UserResDTO'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get users
+      tags:
+      - users:users
+    post:
+      consumes:
+      - application/json
+      description: Create a new user with the provided information
+      parameters:
+      - description: User object to be created
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/request.UserReqDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Successfully created user
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Create a new user
+      tags:
+      - users:users
+  /v1/users/:id:
+    get:
+      description: Get user by id ...
+      parameters:
+      - description: get user by id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.StandardResponseModel'
+            - properties:
+                data:
+                  $ref: '#/definitions/response.UserResDTO'
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get user by id
+      tags:
+      - users:users
+    patch:
+      description: Update user by id ...
+      parameters:
+      - description: update user by id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Update users
+        in: body
+        name: users
+        required: true
+        schema:
+          $ref: '#/definitions/request.UserReqDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.StandardResponseModel'
+      security:
+      - ApiKeyAuth: []
+      summary: Update user by id
+      tags:
+      - users:users
+schemes:
+- https
+- http
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
